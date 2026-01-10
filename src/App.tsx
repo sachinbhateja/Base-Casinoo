@@ -1,82 +1,41 @@
-import { useState } from "react";
-
-type Game = "DASHBOARD" | "DICE" | "COINFLIP" | "ROULETTE";
-
 export default function App() {
-  const [activeGame, setActiveGame] = useState<Game>("DASHBOARD");
-
   return (
-    <div style={{ minHeight: "100vh", background: "#030712", color: "white" }}>
-      {/* HEADER */}
-      <header
-        style={{
-          padding: 20,
-          borderBottom: "1px solid #1f2937",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <h1>🎰 Base Casino</h1>
-        <button
-          style={{
-            padding: "8px 16px",
-            background: "#2563eb",
-            color: "white",
-            border: "none",
-            borderRadius: 6,
-          }}
-        >
-          Connect Wallet (soon)
+    <div className="min-h-screen bg-slate-950 text-white">
+      {/* Header */}
+      <header className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+        <h1 className="text-xl font-bold">🎰 Base Casino</h1>
+        <button className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition">
+          Connect Wallet
         </button>
       </header>
 
-      {/* NAVIGATION */}
-      <nav
-        style={{
-          display: "flex",
-          gap: 12,
-          padding: 16,
-          borderBottom: "1px solid #1f2937",
-        }}
-      >
-        <NavButton label="Dashboard" onClick={() => setActiveGame("DASHBOARD")} />
-        <NavButton label="Dice" onClick={() => setActiveGame("DICE")} />
-        <NavButton label="Coin Flip" onClick={() => setActiveGame("COINFLIP")} />
-        <NavButton label="Roulette" onClick={() => setActiveGame("ROULETTE")} />
+      {/* Navigation */}
+      <nav className="flex gap-3 px-6 py-4 border-b border-slate-800">
+        <NavButton label="Dashboard" />
+        <NavButton label="Dice" />
+        <NavButton label="Coin Flip" />
+        <NavButton label="Roulette" />
       </nav>
 
-      {/* MAIN CONTENT */}
-      <main style={{ padding: 40 }}>
-        {activeGame === "DASHBOARD" && <h2>Welcome to Base Casino 🎉</h2>}
-        {activeGame === "DICE" && <h2>🎲 Dice Game (UI coming)</h2>}
-        {activeGame === "COINFLIP" && <h2>🪙 Coin Flip (UI coming)</h2>}
-        {activeGame === "ROULETTE" && <h2>🎡 Roulette (UI coming)</h2>}
+      {/* Main Content */}
+      <main className="p-10">
+        <h2 className="text-2xl font-semibold mb-2">
+          Welcome to Base Casino 🎉
+        </h2>
+        <p className="text-slate-400">
+          Entertainment-only casino using non-redeemable PLAY tokens.
+        </p>
       </main>
     </div>
   );
 }
 
-function NavButton({
-  label,
-  onClick,
-}: {
-  label: string;
-  onClick: () => void;
-}) {
+function NavButton({ label }: { label: string }) {
   return (
-    <button
-      onClick={onClick}
-      style={{
-        padding: "8px 14px",
-        background: "#111827",
-        color: "white",
-        border: "1px solid #374151",
-        borderRadius: 6,
-        cursor: "pointer",
-      }}
-    >
+    <button className="px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 hover:bg-slate-800 transition">
       {label}
     </button>
   );
 }
+
 
