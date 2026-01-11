@@ -1,6 +1,5 @@
 export default function App() {
   return (
-    console.log("ethereum object:", (window as any).ethereum);
     <div className="min-h-screen bg-slate-950 text-white">
       {/* Header */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
