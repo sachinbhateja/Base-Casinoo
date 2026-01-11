@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-
-=======
 import React, { useState, useCallback } from 'react'
 import { ethers } from 'ethers'
-import { createWeb3Modal } from '@web3modal/ethers/react'
 import { BrowserProvider } from 'ethers'
+import { createWeb3Modal } from '@web3modal/ethers/react'
 
 import { GameType, WalletState, GameHistoryEntry } from './types'
 import { DISCLAIMER_TEXT, BASE_CHAIN_ID } from './constants'
@@ -18,9 +15,8 @@ import RouletteGame from './components/games/RouletteGame'
 import DisclaimerModal from './components/DisclaimerModal'
 
 /* =========================
-   WEB3MODAL CONFIG (BASE)
+   WEB3MODAL CONFIG
    ========================= */
-
 createWeb3Modal({
   projectId: '3a7da0e17dff1379fb78b841d26eb448',
   chains: [
@@ -37,7 +33,7 @@ createWeb3Modal({
     metadata: {
       name: 'Base Entertainment Casino',
       description: 'Entertainment-only casino using non-redeemable PLAY tokens',
-      url: 'https://your-site.vercel.app',
+      url: 'https://base-casino.vercel.app',
       icons: []
     }
   },
@@ -47,7 +43,6 @@ createWeb3Modal({
 /* =========================
    APP
    ========================= */
-
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<GameType | 'DASHBOARD'>('DASHBOARD')
   const [showDisclaimer, setShowDisclaimer] = useState(true)
@@ -68,7 +63,7 @@ const App: React.FC = () => {
   const connectWallet = async () => {
     const ethereum = (window as any).ethereum
     if (!ethereum) {
-      alert('No wallet found. Please install MetaMask, OKX, or Rabby.')
+      alert('No wallet detected. Please install MetaMask, Rabby, or OKX Wallet.')
       return
     }
 
@@ -87,16 +82,14 @@ const App: React.FC = () => {
   }
 
   /* =========================
-     BUY TOKEN (TEMP DISABLED)
+     BUY TOKEN (TEMP)
      ========================= */
   const purchaseTokens = async () => {
-    alert(
-      'Token purchase will be enabled next.\n\nWallet connection works correctly.'
-    )
+    alert('Wallet connected successfully. Token purchase will be enabled next.')
   }
 
   /* =========================
-     GAME CALLBACK (UI ONLY)
+     GAME CALLBACK
      ========================= */
   const handleBet = useCallback(
     (betAmount: number, win: boolean, payout: number, game: GameType) => {
@@ -108,14 +101,13 @@ const App: React.FC = () => {
         payout: win ? payout : 0,
         timestamp: Date.now()
       }
-
       setHistory(prev => [entry, ...prev].slice(0, 20))
     },
     []
   )
 
   /* =========================
-     RENDER
+     RENDER ACTIVE TAB
      ========================= */
   const renderActiveComponent = () => {
     switch (activeTab) {
@@ -191,6 +183,10 @@ const App: React.FC = () => {
       )}
     </div>
   )
+}
+
+export default App
+
 }
 
 export default App
